@@ -29,13 +29,19 @@
    
     <section>
          <container id = "form">
-            <label for = "min">Minutes : </label>
-            <input type = "number" id = "min">
+            <p1>Work time</p1>
             <br>
-            <label for = "sec">Seconds : </label>
-            <input type = "number" id = "sec">
+            <label for = "work-min">Minutes : </label>
+            <input type = "number" id = "work-min">
+
             <br>
-            <input type="submit" value="Envoyer le formulaire" />
+            <p1>Break time</p1>
+            <br>
+            <label for = "break-min">Minutes : </label>
+            <input type = "number" id = "break-min">
+
+            <br>
+            <button id="submit-btn">submit</button>
          </container>
         <div class="container">
             <h1>Pomodoro Timer</h1>
@@ -45,7 +51,7 @@
                 <p id="break">Pause</p>
             </div>
         <div class="setting">
-            <button id= "gear" onclick="gear()">
+            <button id= "gear">
                 <i class="fa-solid fa-gear"></i>
             </button>
 
@@ -62,7 +68,7 @@
             </div>
 
             <div class="controls">
-                <button id="start" onclick="start()">
+                <button id="start">
                   <i class="fa-solid fa-play"></i>
                 </button>
                 

@@ -2,31 +2,42 @@
 let workTittle = document.getElementById('work');
 let breakTittle = document.getElementById('break');
 
-let workTime = 1;  
-let breakTime = 1; 
 
-let seconds = 0;  
+let workTime = 25;  
+let breakTime = 5; 
+
+// let seconds = 0;  
 let isPaused = false;  
 let timer;
 let isWorkMode = true; 
 
 // display initial time
 window.onload = () => {
-    document.getElementById('minutes').innerHTML = workTime;
+    if(localStorage.getItem("workKey") == null){
+        document.getElementById('minutes').innerHTML = workTime;
+        document.getElementById('seconds').innerHTML = "00";
+        
+        
+        document.getElementById('reset').style.display = "none"; 
+    
+        workTittle.classList.add('active');
+    }
+    else{    
+    document.getElementById('minutes').innerHTML = localStorage.getItem("workKey");
     document.getElementById('seconds').innerHTML = "00";
     
     
-    document.getElementById('pause').style.display = "none"; 
     document.getElementById('reset').style.display = "none"; 
 
-    workTittle.classList.add('active');
+    workTittle.classList.add('active');}
+
 }
 
 // start timer
 function start() {
     
     document.getElementById('start').style.display = "none";
-    document.getElementById('pause').style.display = "block";  
+ 
     document.getElementById('reset').style.display = "block";  
 
     let workMinutes = workTime;
@@ -75,28 +86,9 @@ function start() {
     timer = setInterval(timerFunction, 1000); 
 }
 
-// // pause timer
-// function pause() {
-//     if (!isPaused) {
-//         document.getElementById('pause').innerHTML = '<i class="fa-solid fa-play"></i>';
-//     } else {
-//         document.getElementById('pause').innerHTML = '<i class="fa-solid fa-pause"></i>';
-//     }
-//     isPaused = !isPaused; 
-// }
-
-// reset timer
 function reset() {
-    clearInterval(timer); 
-    document.getElementById('minutes').innerHTML = workTime;
-    document.getElementById('seconds').innerHTML = "00";
-    document.getElementById('start').style.display = "block";
-    document.getElementById('pause').style.display = "none";
-    document.getElementById('reset').style.display = "none"; 
-    isPaused = false;
-    isWorkMode = true; 
-    workTittle.classList.add('active');
-    breakTittle.classList.remove('active');
+    workTime=workMinutes
+    breakTime=breakMinutes
 }
 
 let gear = document.getElementById("gear");
@@ -109,3 +101,14 @@ gear.addEventListener("click", () => {
       form.style.display = "block";
     }
   })
+
+document.getElementById('submit-btn').addEventListener('click', function() {
+
+    const workMinutes = document.getElementById('work-min').value;
+    const breakMinutes = document.getElementById('break-min').value;
+    console.log(workMinutes)
+    localStorage.setItem("workKey",workMinutes)
+    localStorage.setItem("breakKey",breakTime)
+    form.style.display = "none";
+    
+});
