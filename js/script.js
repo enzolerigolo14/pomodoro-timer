@@ -75,15 +75,15 @@ function start() {
     timer = setInterval(timerFunction, 1000); 
 }
 
-// pause timer
-function pause() {
-    if (!isPaused) {
-        document.getElementById('pause').innerHTML = '<i class="fa-solid fa-play"></i>';
-    } else {
-        document.getElementById('pause').innerHTML = '<i class="fa-solid fa-pause"></i>';
-    }
-    isPaused = !isPaused; 
-}
+// // pause timer
+// function pause() {
+//     if (!isPaused) {
+//         document.getElementById('pause').innerHTML = '<i class="fa-solid fa-play"></i>';
+//     } else {
+//         document.getElementById('pause').innerHTML = '<i class="fa-solid fa-pause"></i>';
+//     }
+//     isPaused = !isPaused; 
+// }
 
 // reset timer
 function reset() {
@@ -98,3 +98,14 @@ function reset() {
     workTittle.classList.add('active');
     breakTittle.classList.remove('active');
 }
+
+let gear = document.getElementById("gear");
+let form = document.getElementById("form");
+
+gear.addEventListener("click", () => {
+    if(getComputedStyle(form).display != "none"){
+      form.style.display = "none";
+    } else {
+      form.style.display = "block";
+    }
+  })
