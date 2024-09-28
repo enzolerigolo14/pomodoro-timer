@@ -1,8 +1,6 @@
 
-
-
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -10,25 +8,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pomodoro Timer</title>
 
-   <!-- FONT  -->
+    <!-- FONT -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
 
-     <!-- ICONS links  -->
+    <!-- ICONS links -->
     <script src="https://kit.fontawesome.com/6f3103b13c.js" crossorigin="anonymous"></script>
 
-     <!-- CSS Links  -->
+    <!-- CSS Links -->
     <link rel="stylesheet" href="./css/style.css">
 
 
 </head>
 
 <body>
-    
-   
     <section>
-         <container id = "form">
+        <container id = "form">
             <p1>Work time</p1>
             <br>
             <label for = "work-min">Minutes : </label>
@@ -44,18 +40,21 @@
             <button id="submit-btn">submit</button>
          </container>
         <div class="container">
-            <h1>Pomodoro Timer</h1>
-            
-            <div class="panel">
-                <p id="work">Travail</p>
-                <p id="break">Pause</p>
-            </div>
-        <div class="setting">
-            <button id= "gear">
-                <i class="fa-solid fa-gear"></i>
-            </button>
+        <div class="container">
+            <h1>POMODORO TIMER</h1>
 
-        </div>
+            <div class="panel">
+                <p id="work">work</p>
+                <p id="break">break</p>
+            </div>
+
+            <div class="setting">
+                <button id= "gear">
+                    <i class="fa-solid fa-gear"></i>
+                </button>
+    
+            </div>
+    
 
             <div class="timer">
                 <div class="circle">
@@ -68,25 +67,16 @@
             </div>
 
             <div class="controls">
-                <button id="start">
-                  <i class="fa-solid fa-play"></i>
-                </button>
-                
+                <button id="start" onclick="start()"><i class="fa-solid fa-play"></i></button>
 
-                <a id="reset" href="./">
-                <i class="fa-solid fa-arrow-rotate-left"></i>
-                </a>
+                <button id="reset" onclick="reset()"><i class="fa-solid fa-arrow-rotate-left"></i></button>
 
-                <button id= "pause" onclick="pause()"></button>
-                
             </div>
-
-            
         </div>
     </section>
 
-     <!-- SCRIPT -->
+    <!-- SCRIPT -->
     <script src="./js/script.js"></script>
 </body>
 
-</html> 
+</html>
