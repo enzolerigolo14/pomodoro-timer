@@ -1,5 +1,3 @@
-
-
 let workTittle = document.getElementById('work');
 let breakTittle = document.getElementById('break');
 
@@ -8,11 +6,19 @@ let breakTime = 5;
 let seconds = "00";
 
 let isWorkMode = true;
-let breakCount = 0;
 let timer;
 
-// Affichage initial
+// Affichage initial au chargement de la page
 window.onload = () => {
+    // Récupérer les valeurs sauvegardées dans localStorage si elles existent
+    if (localStorage.getItem('workTime')) {
+        workTime = parseInt(localStorage.getItem('workTime'));
+    }
+    if (localStorage.getItem('breakTime')) {
+        breakTime = parseInt(localStorage.getItem('breakTime'));
+    }
+
+    // Mettre à jour l'affichage avec les valeurs récupérées ou les valeurs par défaut
     document.getElementById('minutes').innerHTML = workTime;
     document.getElementById('seconds').innerHTML = seconds;
     workTittle.classList.add('active');
@@ -59,18 +65,16 @@ function start() {
     timer = setInterval(timerFunction, 1000);
 }
 
-
 function reset() {
     // Arrête le timer en cours
     clearInterval(timer);
 
-    // Réinitialise les valeurs par défaut
-    isWorkMode = true;
-    workTime = 25;
-    breakTime = 5;
+    // Mettre à jour l'affichage avec les valeurs actuelles du localStorage (ou les valeurs actuelles du formulaire)
+    workTime = parseInt(localStorage.getItem('workTime')) || workTime;
+    breakTime = parseInt(localStorage.getItem('breakTime')) || breakTime;
     seconds = "00";
 
-    // Met à jour l'affichage
+    // Mettre à jour l'affichage
     document.getElementById('minutes').innerHTML = workTime;
     document.getElementById('seconds').innerHTML = seconds;
 
@@ -83,7 +87,6 @@ function reset() {
     breakTittle.classList.remove('active');
 }
 
-
 // Ouvrir/fermer le formulaire de settings
 let gear = document.getElementById("gear");
 let form = document.getElementById("form");
@@ -92,18 +95,45 @@ gear.addEventListener("click", () => {
     form.style.display = form.style.display === "none" ? "block" : "none";
 });
 
-// Soumettre les valeurs du formulaire
+// Gérer la soumission du formulaire et sauvegarder dans localStorage
 document.getElementById('submit-btn').addEventListener('click', function() {
     const workMinutesInput = document.getElementById('work-min').value;
     const breakMinutesInput = document.getElementById('break-min').value;
+    const errorMessage = document.getElementById('error-message'); // Element where the error will be displayed
+
+    // Regex pour vérifier si l'entrée contient un tiret ou des caractères non numériques
+    const invalidInputPattern = /[^0-9]/;
+
+    // Réinitialiser l'affichage du message d'erreur
+    errorMessage.innerHTML = "";
+
+    // Valider les entrées pour vérifier la présence de tirets ou de caractères invalides
+    if (invalidInputPattern.test(workMinutesInput) || invalidInputPattern.test(breakMinutesInput)) {
+        errorMessage.innerHTML = "Les minutes doivent être des nombres positifs sans tirets ni caractères spéciaux.";
+        return; // Arrêter le processus si les entrées sont invalides
+    }
+
+    // Convertir en nombres
+    const workMinutes = parseInt(workMinutesInput);
+    const breakMinutes = parseInt(breakMinutesInput);
+
+    // Si l'entrée est invalide ou négative, déclencher une erreur
+    if (isNaN(workMinutes) || workMinutes < 0 || isNaN(breakMinutes) || breakMinutes < 0) {
+        errorMessage.innerHTML = "Les minutes doivent être des nombres valides et positifs.";
+        return;
+    }
 
     // Arrêter le timer en cours
     clearInterval(timer);
 
     // Mettre à jour les valeurs du timer avec celles du formulaire
-    workTime = parseInt(workMinutesInput) || 25;
-    breakTime = parseInt(breakMinutesInput) || 5;
+    workTime = workMinutes;
+    breakTime = breakMinutes;
     seconds = "00";
+
+    // Sauvegarder les valeurs dans le localStorage
+    localStorage.setItem('workTime', workTime);
+    localStorage.setItem('breakTime', breakTime);
 
     // Réinitialiser l'affichage
     document.getElementById('minutes').innerHTML = workTime;
@@ -121,4 +151,3 @@ document.getElementById('submit-btn').addEventListener('click', function() {
     workTittle.classList.add('active');
     breakTittle.classList.remove('active');
 });
-
