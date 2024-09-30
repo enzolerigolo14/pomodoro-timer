@@ -118,7 +118,7 @@ document.getElementById('submit-btn').addEventListener('click', function() {
     const breakMinutes = parseInt(breakMinutesInput);
 
     // Si l'entrée est invalide ou négative, déclencher une erreur
-    if (isNaN(workMinutes) || workMinutes < 0 || isNaN(breakMinutes) || breakMinutes < 0) {
+    if (isNaN(workMinutes) || workMinutes <= 0 || isNaN(breakMinutes) || breakMinutes <= 0 || workMinutes > 120 || breakMinutes > 120) {
         errorMessage.innerHTML = "Les minutes doivent être des nombres valides et positifs.";
         return;
     }
