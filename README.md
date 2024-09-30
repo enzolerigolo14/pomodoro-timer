@@ -12,4 +12,4 @@ If the values are incorrect when you trigger the "submit" button you reach an er
 To run this project locally, follow these steps:
 
 **1.Clone the repository:**  
-&emsp git clone https://github.com/yourusername/pomodoro-timer-Caillet-Enzo-Guernine-Lyes.git
+&nbspgit clone https://github.com/yourusername/pomodoro-timer-Caillet-Enzo-Guernine-Lyes.git
