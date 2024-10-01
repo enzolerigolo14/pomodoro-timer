@@ -8,9 +8,9 @@ let seconds = "00";
 let isWorkMode = true;
 let timer;
 
-// Affichage initial au chargement de la page
+// Initial display on page load
 window.onload = () => {
-    // Récupérer les valeurs sauvegardées dans localStorage si elles existent
+    // Retrieve saved values from localStorage if they exist
     if (localStorage.getItem('workTime')) {
         workTime = parseInt(localStorage.getItem('workTime'));
     }
@@ -18,7 +18,7 @@ window.onload = () => {
         breakTime = parseInt(localStorage.getItem('breakTime'));
     }
 
-    // Mettre à jour l'affichage avec les valeurs récupérées ou les valeurs par défaut
+    // Update the display with the retrieved values or default values
     document.getElementById('minutes').innerHTML = workTime;
     document.getElementById('seconds').innerHTML = seconds;
     workTittle.classList.add('active');
@@ -66,28 +66,28 @@ function start() {
 }
 
 function reset() {
-    // Arrête le timer en cours
+    // Stop the current timer
     clearInterval(timer);
 
-    // Mettre à jour l'affichage avec les valeurs actuelles du localStorage (ou les valeurs actuelles du formulaire)
+    // Update the display with the current values from localStorage (or the current values from the form)
     workTime = parseInt(localStorage.getItem('workTime')) || workTime;
     breakTime = parseInt(localStorage.getItem('breakTime')) || breakTime;
     seconds = "00";
 
-    // Mettre à jour l'affichage
+    // Update the display
     document.getElementById('minutes').innerHTML = workTime;
     document.getElementById('seconds').innerHTML = seconds;
 
-    // Réaffiche le bouton start et masque le bouton reset
+    // Show the start button and hide the reset button
     document.getElementById('start').style.display = "block";
     document.getElementById('reset').style.display = "none";
 
-    // Réinitialise les classes pour activer l'état "work"
+    // Reset classes to activate the "work" state
     workTittle.classList.add('active');
     breakTittle.classList.remove('active');
 }
 
-// Ouvrir/fermer le formulaire de settings
+// Open /close the settings form
 let gear = document.getElementById("gear");
 let form = document.getElementById("form");
 
@@ -95,58 +95,58 @@ gear.addEventListener("click", () => {
     form.style.display = form.style.display === "none" ? "block" : "none";
 });
 
-// Gérer la soumission du formulaire et sauvegarder dans localStorage
+// Handle form submission and save to localStorage
 document.getElementById('submit-btn').addEventListener('click', function() {
     const workMinutesInput = document.getElementById('work-min').value;
     const breakMinutesInput = document.getElementById('break-min').value;
-    const errorMessage = document.getElementById('error-message'); // Element where the error will be displayed
+    const errorMessage = document.getElementById('error-message'); 
 
-    // Regex pour vérifier si l'entrée contient un tiret ou des caractères non numériques
+    // Regex to check if the input contains a dash or non-numeric characters
     const invalidInputPattern = /[^0-9]/;
 
-    // Réinitialiser l'affichage du message d'erreur
+    // Reset the display of the error message
     errorMessage.innerHTML = "";
 
-    // Valider les entrées pour vérifier la présence de tirets ou de caractères invalides
+    // Validate inputs to check for dashes or invalid characters
     if (invalidInputPattern.test(workMinutesInput) || invalidInputPattern.test(breakMinutesInput)) {
-        errorMessage.innerHTML = "Les minutes doivent être des nombres positifs sans tirets ni caractères spéciaux.";
-        return; // Arrêter le processus si les entrées sont invalides
+        errorMessage.innerHTML = "Minutes must be positive numbers without dashes or special characters.";
+        return; // Stop the process if inputs are invalid
     }
 
-    // Convertir en nombres
+    // Convert to numbers
     const workMinutes = parseInt(workMinutesInput);
     const breakMinutes = parseInt(breakMinutesInput);
 
-    // Si l'entrée est invalide ou négative, déclencher une erreur
+    // If the input is invalid or negative, trigger an error
     if (isNaN(workMinutes) || workMinutes <= 0 || isNaN(breakMinutes) || breakMinutes <= 0 || workMinutes > 240 || breakMinutes > 240) {
-        errorMessage.innerHTML = "Les minutes doivent être des nombres valides et positifs.";
+        errorMessage.innerHTML = "Minutes must be valid positive numbers.";
         return;
     }
 
-    // Arrêter le timer en cours
+    // Stop the current timer
     clearInterval(timer);
 
-    // Mettre à jour les valeurs du timer avec celles du formulaire
+    // Update the timer values with those from the form
     workTime = workMinutes;
     breakTime = breakMinutes;
     seconds = "00";
 
-    // Sauvegarder les valeurs dans le localStorage
+    // Save the values in localStorage
     localStorage.setItem('workTime', workTime);
     localStorage.setItem('breakTime', breakTime);
 
-    // Réinitialiser l'affichage
+    // Reset the display
     document.getElementById('minutes').innerHTML = workTime;
     document.getElementById('seconds').innerHTML = seconds;
 
-    // Réafficher le bouton start et masquer le bouton reset
+    // Show the start button and hide the reset button
     document.getElementById('start').style.display = "block";
     document.getElementById('reset').style.display = "none";
 
-    // Cacher le formulaire
+    // Hide the form
     form.style.display = "none";
 
-    // Réinitialiser le mode de travail
+    // Reset work mode
     isWorkMode = true;
     workTittle.classList.add('active');
     breakTittle.classList.remove('active');
