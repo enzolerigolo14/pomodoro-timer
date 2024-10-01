@@ -1,4 +1,5 @@
-**# Author :** Caillet Enzo and Guernine Lyes
+# Author : 
+Caillet Enzo and Guernine Lyes
 
 # Pomodoro timer
 The application "Pomodoro" permit a work time management by switching between work timer and break timer. The default work time is set to 25 minutes and the break time is set to 5 minutes. 
