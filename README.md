@@ -1,7 +1,7 @@
 # Pomodoro Timer
 
 ## Author : 
-Caillet Enzo and Guernine Lyes
+Caillet Enzo & Guernine Lyes
 
 ## Overview :
 The application "Pomodoro" permit a work time management by switching between work timer and break timer. The default work time is set to 25 minutes and the break time is set to 5 minutes. 
@@ -30,10 +30,10 @@ If the values are incorrect when you trigger the "submit" button you reach an er
 To run this project locally, follow these steps:
 
 **1. Clone the repository:**  
-- git clone https://github.com/yourusername/pomodoro-timer-Caillet-Enzo-Guernine-Lyes.git
+- git clone https://github.com/enzolerigolo14/pomodoro-timer.git
 
 **2. Navigate to the project folder:**  
-- git clone https://github.com/yourusername/pomodoro-timer-Caillet-Enzo-Guernine-Lyes.git
+- cd pomodoro-timer
 
 3.Open the project in a browser:
 Simply open the index.html file in your preferred web browser.
