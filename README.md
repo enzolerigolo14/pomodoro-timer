@@ -36,7 +36,7 @@ To run this project locally, follow these steps:
 - cd pomodoro-timer
 
 **3.Open the project in a browser:**
-Simply open the index.html file in your preferred web browser.
+- Simply open the index.html file in your preferred web browser.
 
 ## Feature
 
